@@ -1,12 +1,22 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  [![Contributors][contributors-shield]][contributors-url]
-  [![Forks][forks-shield]][forks-url]
-  [![Stargazers][stars-shield]][stars-url]
-  [![Issues][issues-shield]][issues-url]
-  [![Apache License 2.0][license-shield]][license-url]
-
+  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  </a>
+  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/network/members">
+    <img src="https://img.shields.io/github/forks/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  </a>
+  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/stargazers">
+    <img src="https://img.shields.io/github/stars/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  </a>
+  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/issues">
+    <img src="https://img.shields.io/github/issues/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  </a>
+  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  </a>
+  
   <!-- PROJECT LOGO -->
   <br />
   <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP">
@@ -175,16 +185,5 @@ Distributed under the Apache License 2.0 License. See `LICENSE` for more informa
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge
-[contributors-url]: https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge
-[forks-url]: https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/network/members
-[stars-shield]: https://img.shields.io/github/stars/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge
-[stars-url]: https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge
-[issues-url]: https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/issues
-[license-shield]: https://img.shields.io/github/license/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge
-[license-url]: https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/blob/main/LICENSE
-
 [Php]: https://img.shields.io/badge/php-35495E?style=for-the-badge&logo=php&logoColor=7a86b8
 [Php-url]: https://www.php.net/
