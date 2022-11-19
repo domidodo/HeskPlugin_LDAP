@@ -19,8 +19,9 @@
   
   <!-- PROJECT LOGO -->
   <br />
+  <br />
   <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP">
-    <img src="HeskPlugin_LDAP_logo.png" alt="Logo" width="127" height="80">
+    <img src="HeskPlugin_LDAP_logo.png" alt="Logo" width="159" height="100">
   </a>
 
   <h3 align="center">Hesk-Plugin: LDAP</h3>
