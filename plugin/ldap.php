@@ -11,13 +11,18 @@
 define('IN_SCRIPT',1);
 define('HESK_PATH','../');
 
-$_SESSION['isadmin'] = true;
 
 /* Get all the required files and functions */
 require(HESK_PATH . 'hesk_settings.inc.php');
 require(HESK_PATH . 'inc/common.inc.php');
 require(HESK_PATH . 'inc/admin_functions.inc.php');
 require(HESK_PATH . 'plugin/ldap_settings.inc.php');
+
+// Do we require a key if not accessed over CLI?
+hesk_authorizeNonCLI();
+
+$_SESSION['isadmin'] = true;
+
 hesk_load_database_functions();
 
 hesk_session_start();
