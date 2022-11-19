@@ -103,8 +103,8 @@ You need to enable the LDAP-extension in the php.ini
   ```
 
 
-* Linux
-  For Debian, the installation command would be `apt-get install php-ldap`.<br />
+* Linux <br />
+  For Debian, the installation command would be `apt-get install php-ldap`. <br />
   For RHEL based systems, the command would be `yum install php-ldap`.
 
   ```ini
