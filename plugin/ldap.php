@@ -124,7 +124,7 @@ function do_LdapSync()
           hesk_dbQuery("INSERT INTO `".hesk_dbEscape($hesk_settings['db_pfix'])."users` (`user`, `pass`, `isadmin`, `name`, `email`, `heskprivileges`) VALUES ('".hesk_dbEscape($uid)."', '".hesk_dbEscape($userPassword)."', '1', '".hesk_dbEscape($displayName)."', '".hesk_dbEscape($mail)."', '')");
           hesk_dbQuery("INSERT INTO `".hesk_dbEscape($hesk_settings['db_pfix'])."plugin_ldap` (`user_id`, `ldap_dn`) VALUES (" . hesk_dbInsertID() . ", '".hesk_dbEscape($dn)."')");
           hesk_process_messages("Insert user ".$uid." from LDAP", 'NOREDIRECT', 'INFO');
-          echo "Insert user ".$uid." from LDAP<br/>";
+          showDebugText("Insert user ".$uid." from LDAP");
           continue;
         }
   
@@ -132,13 +132,13 @@ function do_LdapSync()
         if($user->ldap_dn == null){
           hesk_dbQuery("INSERT INTO `".hesk_dbEscape($hesk_settings['db_pfix'])."plugin_ldap` (`user_id`, `ldap_dn`) VALUES (".intval($user->id).", '".hesk_dbEscape($dn)."')");
           hesk_process_messages("Connect existing user with LDAP ".$uid, 'NOREDIRECT', 'INFO');
-          echo "Connect user ".$uid."<br/>";
+          showDebugText("Connect user ".$uid);
         }
   
         // Update User in DB
         hesk_dbQuery("UPDATE `".$hesk_settings['db_pfix']."users` SET `user`='".hesk_dbEscape($uid)."', `pass`='".hesk_dbEscape($userPassword)."', `name`='".hesk_dbEscape($displayName)."', `email`='".hesk_dbEscape($mail)."' WHERE `id`=".intval($user->id));
         hesk_process_messages("Update user ".$uid, 'NOREDIRECT', 'INFO');
-        echo "Update user ".$uid."<br/>";
+        showDebugText("Update user ".$uid);
       }
     
       for ($i=0; $i < count($dbUsers); $i++)
@@ -161,12 +161,12 @@ function do_LdapSync()
           hesk_dbQuery("DELETE FROM `".hesk_dbEscape($hesk_settings['db_pfix'])."auth_tokens` WHERE `user_id`=".$id);
           hesk_dbQuery("DELETE FROM `".hesk_dbEscape($hesk_settings['db_pfix'])."mfa_verification_tokens` WHERE `user_id`=".$id);
           hesk_process_messages("Delete user ".$email." from DB", 'NOREDIRECT', 'INFO');
-          echo "Delete user ".$email." from DB<br/>";
+          showDebugText("Delete user ".$email." from DB<br/>");
           
           hesk_updateAutoassignConfigs();
         }
       }
-      echo "<br/><br/>Done!";
+      echo "Done!";
     } else {
         hesk_process_messages("Wrong LDAP password!", 'NOREDIRECT', 'ERROR');
         echo "Wrong LDAP password!";
@@ -177,6 +177,16 @@ function do_LdapSync()
   }
 
   exit();
+}
+
+function showDebugText($txt){
+	global $hesk_settings;
+	
+	if($hesk_settings['debug_mode'])
+	{
+		echo $txt;
+		echo "<br/>";
+	}
 }
 
 function getUserByDnOrMail($dbUsers, $dn, $mail){
