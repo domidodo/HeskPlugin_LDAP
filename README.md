@@ -1,14 +1,14 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![Apache License 2.0][license-shield]][license-url]
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
+  [![Contributors][contributors-shield]][contributors-url]
+  [![Forks][forks-shield]][forks-url]
+  [![Stargazers][stars-shield]][stars-url]
+  [![Issues][issues-shield]][issues-url]
+  [![Apache License 2.0][license-shield]][license-url]
+
+  <!-- PROJECT LOGO -->
+  <br />
   <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP">
     <img src="HeskPlugin_LDAP_logo.png" alt="Logo" width="127" height="80">
   </a>
