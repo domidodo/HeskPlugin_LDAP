@@ -10,7 +10,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP">
-    <img src="HeskPlugin_LDAP_logo.png" alt="Logo" width="80" height="80">
+    <img src="HeskPlugin_LDAP_logo.png" alt="Logo" width="127" height="80">
   </a>
 
   <h3 align="center">Hesk-Plugin: LDAP</h3>
@@ -80,8 +80,8 @@ Here's why:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Just a few steps and you can use LDAP on Hesk.
+
 
 ### Prerequisites
 
@@ -93,21 +93,20 @@ You need to enable the LDAP-extension in the php.ini
 
 
 * Linux
-For Debian, the installation command would be apt-get install php-ldap
-For RHEL based systems, the command would be yum install php-ldap
+  For Debian, the installation command would be apt-get install php-ldap
+  For RHEL based systems, the command would be yum install php-ldap
 
   ```ini
   extension=php_ldap.so
   ```
+  `/etc/php/[verion]/apache2/php.ini`
 
-<a href="https://www.php.net/manual/de/book.ldap.php">More information</a>
+<a href="https://www.php.net/manual/de/book.ldap.php">php.net »</a>
 
 
 ### Installation
 
-1. Download and install hesk 
-   <a href="https://www.hesk.com/download.php">Download</a>
-   <a href="https://www.hesk.com/demo/docs/step-by-step-guide.html">Step by step install guide</a>
+1. Download and install hesk (<a href="https://www.hesk.com/download.php">Download</a> · <a href="https://www.hesk.com/demo/docs/step-by-step-guide.html">Step by step install guide</a>)
 2. Navigate into your hest-root-directory
    ```sh
    cd /var/www/html/hesk/
@@ -116,7 +115,7 @@ For RHEL based systems, the command would be yum install php-ldap
    ```sh
    git clone https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.git
    ```
-4. Open the `ldap_settings.inc.php-file` and setup your LDAP-connection
+4. Open `ldap_settings.inc.php` and setup your LDAP-connection
    ```sh
    nano plugin/ldap_settings.inc.php
    ```
