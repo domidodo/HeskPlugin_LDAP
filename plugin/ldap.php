@@ -105,16 +105,19 @@ function do_LdapSync()
       $acticDnList = array();
       for ($i=0; $i < $contacts["count"]; $i++)
       {
-        $dn = $contacts[$i]["dn"];
-        $uid = $contacts[$i]["uid"][0];
-        $mail = $contacts[$i]["mail"][0];
-        $displayName = $contacts[$i]["displayname"][0];
+		$ldapUsr = $contacts[$i];
+        $dn = $ldapUsr["dn"];
+        $uid = $ldapUsr["uid"][0];
+        $mail = $ldapUsr["mail"][0];
+        $displayName = $ldapUsr["displayname"][0];
         $userPassword = hesk_password_hash(generateRandomString());
-		$nsaccountlock = $contacts[$i]["nsaccountlock"][0];
-		
-        if(strtolower($nsaccountlock) == "true" || $nsaccountlock == 1){
-	      continue;
-        }
+		if(array_key_exists("nsaccountlock", $ldapUsr)){
+			$nsaccountlock = $ldapUsr["nsaccountlock"][0];
+			
+			if(strtolower($nsaccountlock) == "true" || $nsaccountlock == 1){
+			  continue;
+			}
+		}		
         array_push($acticDnList, $dn);
 
         $user = getUserByDnOrMail($dbUsers, $dn, $mail);
