@@ -54,29 +54,29 @@ CREATE TABLE IF NOT EXISTS `".hesk_dbEscape($hesk_settings['db_pfix'])."plugin_l
 
 function do_patchFiles()
 {
-	$patchFilePath = HESK_PATH.'admin/index.php';
-	$code=file_get_contents($patchFilePath);
-	$code=str_replace("hesk_password_verify(\$pass, \$user_row['pass'])", "hesk_password_verify(\$pass, \$user_row['pass'], intval(\$user_row['id']))",$code);
-	file_put_contents($patchFilePath, $code);
+  $patchFilePath = HESK_PATH.'admin/index.php';
+  $code=file_get_contents($patchFilePath);
+  $code=str_replace("hesk_password_verify(\$pass, \$user_row['pass'])", "hesk_password_verify(\$pass, \$user_row['pass'], intval(\$user_row['id']))",$code);
+  file_put_contents($patchFilePath, $code);
 
-	
-	$patchFilePath = HESK_PATH.'inc/admin_functions.inc.php';
-	$code=file_get_contents($patchFilePath);
-	$code=str_replace(" hesk_password_verify(", " outdated_hesk_password_verify(",$code);
-	$code=str_replace(" hesk_password_needs_rehash(", " outdated_hesk_password_needs_rehash(",$code);
-	$code=str_replace("<?php", "<?php\nrequire(HESK_PATH . 'plugin/ldap_settings.inc.php');",$code);
-	file_put_contents($patchFilePath, $code);
-	
-	$code=file_get_contents(HESK_PATH.'plugin/ldap_patch.php');
-	$code=str_replace("<?php", "",$code);
-	file_put_contents($patchFilePath, $code, FILE_APPEND);
-	
-	return true;
+  
+  $patchFilePath = HESK_PATH.'inc/admin_functions.inc.php';
+  $code=file_get_contents($patchFilePath);
+  $code=str_replace(" hesk_password_verify(", " outdated_hesk_password_verify(",$code);
+  $code=str_replace(" hesk_password_needs_rehash(", " outdated_hesk_password_needs_rehash(",$code);
+  $code=str_replace("<?php", "<?php\nrequire(HESK_PATH . 'plugin/ldap_settings.inc.php');",$code);
+  file_put_contents($patchFilePath, $code);
+  
+  $code=file_get_contents(HESK_PATH.'plugin/ldap_patch.php');
+  $code=str_replace("<?php", "",$code);
+  file_put_contents($patchFilePath, $code, FILE_APPEND);
+  
+  return true;
 }
 
 function do_LdapSync()
 {
-  global $hesk_settings, $hesk_ldap_settings, $hesklang;
+  global $hesk_settings, $hesk_ldap_settings;
 
   $dbUsers = array();  
   $res = hesk_dbQuery("SELECT id, email, ldap_dn FROM `".hesk_dbEscape($hesk_settings['db_pfix'])."users` LEFT JOIN `".hesk_dbEscape($hesk_settings['db_pfix'])."plugin_ldap` ON id=user_id WHERE id <> 1");
@@ -105,19 +105,18 @@ function do_LdapSync()
       $acticDnList = array();
       for ($i=0; $i < $contacts["count"]; $i++)
       {
-		$ldapUsr = $contacts[$i];
+        $ldapUsr = $contacts[$i];
         $dn = $ldapUsr["dn"];
         $uid = $ldapUsr["uid"][0];
         $mail = $ldapUsr["mail"][0];
         $displayName = $ldapUsr["displayname"][0];
         $userPassword = hesk_password_hash(generateRandomString());
-		if(array_key_exists("nsaccountlock", $ldapUsr)){
-			$nsaccountlock = $ldapUsr["nsaccountlock"][0];
-			
-			if(strtolower($nsaccountlock) == "true" || $nsaccountlock == 1){
-			  continue;
-			}
-		}		
+        if(array_key_exists("nsaccountlock", $ldapUsr)){
+          $nsaccountlock = $ldapUsr["nsaccountlock"][0];
+          if(strtolower($nsaccountlock) == "true" || $nsaccountlock == 1){
+            continue;
+          }
+        }    
         array_push($acticDnList, $dn);
 
         $user = getUserByDnOrMail($dbUsers, $dn, $mail);
@@ -153,7 +152,7 @@ function do_LdapSync()
         if(!in_array($dn, $acticDnList, true))
         {
           hesk_dbQuery("UPDATE `".hesk_dbEscape($hesk_settings['db_pfix'])."tickets` SET `owner`=0 WHERE `owner`='".$id."' AND `status` <> '3'");
-	    
+      
           hesk_dbQuery("DELETE FROM `".hesk_dbEscape($hesk_settings['db_pfix'])."users` WHERE `id`=".$id);
           hesk_dbQuery("DELETE FROM `".hesk_dbEscape($hesk_settings['db_pfix'])."plugin_ldap` WHERE `user_id` =".$id);
             
@@ -183,13 +182,13 @@ function do_LdapSync()
 }
 
 function showDebugText($txt){
-	global $hesk_settings;
-	
-	if($hesk_settings['debug_mode'])
-	{
-		echo $txt;
-		echo "<br/>";
-	}
+  global $hesk_settings;
+  
+  if($hesk_settings['debug_mode'])
+  {
+    echo $txt;
+    echo "<br/>";
+  }
 }
 
 function getUserByDnOrMail($dbUsers, $dn, $mail){
