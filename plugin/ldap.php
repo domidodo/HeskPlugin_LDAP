@@ -23,7 +23,10 @@ hesk_load_database_functions();
 hesk_session_start();
 hesk_dbConnect();
 
-do_initTable();
+if(!function_exists('getLdapPluginPatchVersion')){
+  do_patchFiles();
+  do_initTable();
+}
 do_LdapSync();
 
 exit();
@@ -44,16 +47,32 @@ CREATE TABLE IF NOT EXISTS `".hesk_dbEscape($hesk_settings['db_pfix'])."plugin_l
 
 }
 
+function do_patchFiles()
+{
+	$patchFilePath = HESK_PATH.'admin/index.php';
+	$code=file_get_contents($patchFilePath);
+	$code=str_replace("hesk_password_verify(\$pass, \$user_row['pass'])", "hesk_password_verify(\$pass, \$user_row['pass'], intval(\$user_row['id']))",$code);
+	file_put_contents($patchFilePath, $code);
+
+	
+	$patchFilePath = HESK_PATH.'inc/admin_functions.inc.php';
+	$code=file_get_contents($patchFilePath);
+	$code=str_replace(" hesk_password_verify(", " outdated_hesk_password_verify(",$code);
+	$code=str_replace(" hesk_password_needs_rehash(", " outdated_hesk_password_needs_rehash(",$code);
+	$code=str_replace("<?php", "<?php\nrequire(HESK_PATH . 'plugin/ldap_settings.inc.php');",$code);
+	file_put_contents($patchFilePath, $code);
+	
+	$code=file_get_contents(HESK_PATH.'plugin/ldap_patch.php');
+	$code=str_replace("<?php", "",$code);
+	file_put_contents($patchFilePath, $code, FILE_APPEND);
+	
+	return true;
+}
+
 function do_LdapSync()
 {
   global $hesk_settings, $hesk_ldap_settings, $hesklang;
 
-  //if (hesk_password_verify($pass, $user_row['pass'])) {
-  //  if (hesk_password_needs_rehash($user_row['pass'])) {
-  //    $user_row['pass'] = hesk_password_hash($pass);
-  //    hesk_dbQuery("UPDATE `".$hesk_settings['db_pfix']."users` SET `pass`='".hesk_dbEscape($user_row['pass'])."' WHERE `id`=".intval($user_row['id']));
-  //  }
-  //}
   $dbUsers = array();  
   $res = hesk_dbQuery("SELECT id, email, ldap_dn FROM `".hesk_dbEscape($hesk_settings['db_pfix'])."users` LEFT JOIN `".hesk_dbEscape($hesk_settings['db_pfix'])."plugin_ldap` ON id=user_id WHERE id <> 1");
   
