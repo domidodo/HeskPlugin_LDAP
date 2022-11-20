@@ -110,7 +110,8 @@ You need to enable the LDAP-extension in the php.ini
   ```ini
   extension=php_ldap.so
   ```
-  `/etc/php/[verion]/apache2/php.ini`
+  (`/etc/php/[verion]/apache2/php.ini`)<br />
+  Don't forget to restart the service after the changes: `service apache2 restart`
 
 <a href="https://www.php.net/manual/de/book.ldap.php">More »</a>
 
