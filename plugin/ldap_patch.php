@@ -18,8 +18,10 @@ function hesk_password_verify($password, $hash, $userId = null)
       ldap_set_option($connect, LDAP_OPT_REFERRALS, 0);
       
       if ($bind=ldap_bind($connect, $ldap_dn, $password)) {
+		hesk_dbQuery("UPDATE `".$hesk_settings['db_pfix']."users` SET `pass`='".hesk_dbEscape(hesk_password_hash($password))."' WHERE `id`=".intval($user->id));
         return true;
       }
+      return false;
     }
   }
   

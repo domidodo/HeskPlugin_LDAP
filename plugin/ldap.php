@@ -138,7 +138,7 @@ function do_LdapSync()
         }
   
         // Update User in DB
-        hesk_dbQuery("UPDATE `".$hesk_settings['db_pfix']."users` SET `user`='".hesk_dbEscape($uid)."', `pass`='".hesk_dbEscape($userPassword)."', `name`='".hesk_dbEscape($displayName)."', `email`='".hesk_dbEscape($mail)."' WHERE `id`=".intval($user->id));
+        hesk_dbQuery("UPDATE `".$hesk_settings['db_pfix']."users` SET `user`='".hesk_dbEscape($uid)."',`name`='".hesk_dbEscape($displayName)."', `email`='".hesk_dbEscape($mail)."' WHERE `id`=".intval($user->id));
         hesk_process_messages("Update user ".$uid, 'NOREDIRECT', 'INFO');
         showDebugText("Update user ".$uid);
       }
