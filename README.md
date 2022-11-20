@@ -119,13 +119,13 @@ You need to enable the LDAP-extension in the php.ini
 ### Installation
 
 1. Download and install hesk (<a href="https://www.hesk.com/download.php">Download</a> · <a href="https://www.hesk.com/demo/docs/step-by-step-guide.html">Step by step install guide</a>)
-2. Navigate into your hest-root-directory
-   ```sh
-   cd /var/www/html/hesk/
-   ```
 3. Clone the repo
    ```sh
    git clone https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.git
+   ```
+2. Copy the plugin-directory into your hest-root-directory
+   ```sh
+   cp -r HeskPlugin_LDAP/plugin/ /var/www/html/hesk/plugin/
    ```
 4. Open `ldap_settings.inc.php` and setup your LDAP-connection
    ```sh
