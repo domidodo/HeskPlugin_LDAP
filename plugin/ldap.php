@@ -62,8 +62,8 @@ function do_patchFiles()
   
   $patchFilePath = HESK_PATH.'inc/admin_functions.inc.php';
   $code=file_get_contents($patchFilePath);
-  $code=str_replace(" hesk_password_verify(", " outdated_hesk_password_verify(",$code);
-  $code=str_replace(" hesk_password_needs_rehash(", " outdated_hesk_password_needs_rehash(",$code);
+  $code=str_replace(" hesk_password_verify(", " local_hesk_password_verify(",$code);
+  $code=str_replace(" hesk_password_needs_rehash(", " local_hesk_password_needs_rehash(",$code);
   $code=str_replace("<?php", "<?php\nrequire(HESK_PATH . 'plugin/ldap_settings.inc.php');",$code);
   file_put_contents($patchFilePath, $code);
   
@@ -149,7 +149,7 @@ function do_LdapSync()
         $id = $dbUsers[$i]->id;
         $email = $dbUsers[$i]->email;
       
-        if(!in_array($dn, $acticDnList, true))
+        if($dn != null && !in_array($dn, $acticDnList, true))
         {
           hesk_dbQuery("UPDATE `".hesk_dbEscape($hesk_settings['db_pfix'])."tickets` SET `owner`=0 WHERE `owner`='".$id."' AND `status` <> '3'");
       

@@ -23,7 +23,7 @@ function hesk_password_verify($password, $hash, $userId = null)
     }
   }
   
-  return false;
+  return local_hesk_password_verify($password, $hash);
 }
 
 function hesk_password_needs_rehash($hash)
