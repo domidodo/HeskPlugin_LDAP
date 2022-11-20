@@ -112,7 +112,7 @@ You need to enable the LDAP-extension in the php.ini
   ```
   `/etc/php/[verion]/apache2/php.ini`
 
-<a href="https://www.php.net/manual/de/book.ldap.php">php.net »</a>
+<a href="https://www.php.net/manual/de/book.ldap.php">More »</a>
 
 
 ### Installation
@@ -134,11 +134,17 @@ You need to enable the LDAP-extension in the php.ini
    ```sh
    crontab -e
    ```
-   and add this line to setup a cron job 
+   and add this line:
    ```sh
    */5 * * * * curl -s http://127.0.0.1/hesk/plugin/ldap.php?key=[##URL Access Key##] > /dev/null # Every 5 minutes
    ```
    If you have `URL Access Key` set in `Admin panel > Settings > Help desk > Security > URL Access Key` (which you should), you will need to replace `[##URL Access Key##]` with it to access it via an URL addres.
+6. reload Cronjob-service
+   ```sh
+   service cron reload
+   ```
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
