@@ -163,6 +163,8 @@ It is posible to add local Hesk-User. They can edit the password over the Hesk-U
 
 If there is a LDAP-User with the same mail-address like a local Hesk-User, both accounts will be linked and the LDAP-user-password will be the valid one.
 
+For the case that the LDAP server cannot be reached, the passwords are encrypted stored in the database.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
