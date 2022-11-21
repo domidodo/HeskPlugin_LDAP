@@ -125,7 +125,7 @@ You need to enable the LDAP-extension in the php.ini
    ```
 2. Copy the plugin-directory into your hest-root-directory
    ```sh
-   cp -r HeskPlugin_LDAP/plugin/ /var/www/html/hesk/plugin/
+   cp -r HeskPlugin_LDAP/plugin/* /var/www/html/hesk/plugin/
    ```
 4. Open `ldap_settings.inc.php` and setup your LDAP-connection
    ```sh
