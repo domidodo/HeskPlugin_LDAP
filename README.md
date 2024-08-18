@@ -1,26 +1,26 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  <a href="https://github.com/domidodo/HeskPlugin_LDAP/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/domidodo/HeskPlugin_LDAP.svg?style=for-the-badge">
   </a>
-  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/network/members">
-    <img src="https://img.shields.io/github/forks/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  <a href="https://github.com/domidodo/HeskPlugin_LDAP/network/members">
+    <img src="https://img.shields.io/github/forks/domidodo/HeskPlugin_LDAP.svg?style=for-the-badge">
   </a>
-  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/stargazers">
-    <img src="https://img.shields.io/github/stars/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  <a href="https://github.com/domidodo/HeskPlugin_LDAP/stargazers">
+    <img src="https://img.shields.io/github/stars/domidodo/HeskPlugin_LDAP.svg?style=for-the-badge">
   </a>
-  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/issues">
-    <img src="https://img.shields.io/github/issues/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  <a href="https://github.com/domidodo/HeskPlugin_LDAP/issues">
+    <img src="https://img.shields.io/github/issues/domidodo/HeskPlugin_LDAP.svg?style=for-the-badge">
   </a>
-  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.svg?style=for-the-badge">
+  <a href="https://github.com/domidodo/HeskPlugin_LDAP/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/domidodo/HeskPlugin_LDAP.svg?style=for-the-badge">
   </a>
   
   <!-- PROJECT LOGO -->
   <br />
   <br />
-  <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP">
+  <a href="https://github.com/domidodo/HeskPlugin_LDAP">
     <img src="HeskPlugin_LDAP_logo.png" alt="Logo" width="159" height="100">
   </a>
 
@@ -32,9 +32,9 @@
     <a href="https://www.hesk.com/"><strong>Go to hesk.com »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/issues">Report Bug</a>
+    <a href="https://github.com/domidodo/HeskPlugin_LDAP/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP/issues">Request Feature</a>
+    <a href="https://github.com/domidodo/HeskPlugin_LDAP/issues">Request Feature</a>
   </p>
 </div>
 
@@ -121,7 +121,7 @@ You need to enable the LDAP-extension in the php.ini
 1. Download and install hesk (<a href="https://www.hesk.com/download.php">Download</a> · <a href="https://www.hesk.com/demo/docs/step-by-step-guide.html">Step by step install guide</a>)
 3. Clone the repo
    ```sh
-   git clone https://github.com/Kinderschutzbund-Karlsruhe/HeskPlugin_LDAP.git
+   git clone https://github.com/domidodo/HeskPlugin_LDAP.git
    ```
 2. Copy the plugin-directory into your hest-root-directory
    ```sh
