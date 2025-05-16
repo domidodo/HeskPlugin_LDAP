@@ -36,5 +36,5 @@ function hesk_password_needs_rehash($hash)
 
 function getLdapPluginPatchVersion()
 {
-    return 1.0;
+    return "3.5.3";
 }
