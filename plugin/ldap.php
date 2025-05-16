@@ -28,10 +28,17 @@ hesk_load_database_functions();
 hesk_session_start();
 hesk_dbConnect();
 
+if(!function_exists('ldap_connect')){
+  echo "You need to enable LDAP on your server!";
+  exit();
+}
+
+
 if(!function_exists('getLdapPluginPatchVersion')){
   do_patchFiles();
   do_initTable();
 }
+
 do_LdapSync();
 
 exit();
@@ -58,9 +65,8 @@ function do_patchFiles()
   $code=file_get_contents($patchFilePath);
   $code=str_replace("hesk_password_verify(\$pass, \$user_row['pass'])", "hesk_password_verify(\$pass, \$user_row['pass'], intval(\$user_row['id']))",$code);
   file_put_contents($patchFilePath, $code);
-
   
-  $patchFilePath = HESK_PATH.'inc/admin_functions.inc.php';
+  $patchFilePath = HESK_PATH.'inc/common.inc.php';
   $code=file_get_contents($patchFilePath);
   $code=str_replace(" hesk_password_verify(", " local_hesk_password_verify(",$code);
   $code=str_replace(" hesk_password_needs_rehash(", " local_hesk_password_needs_rehash(",$code);
