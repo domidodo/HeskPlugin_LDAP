@@ -113,6 +113,12 @@ function do_LdapSync()
       {
         $ldapUsr = $contacts[$i];
         $dn = $ldapUsr["dn"];
+		
+		if(!array_key_exists("uid", $ldapUsr) || !array_key_exists("mail", $ldapUsr) || !array_key_exists("displayname", $ldapUsr)) {
+			showDebugText("Skip user " . $dn, 'NOTICE');
+			continue;
+		}
+		
         $uid = $ldapUsr["uid"][0];
         $mail = $ldapUsr["mail"][0];
         $displayName = $ldapUsr["displayname"][0];
