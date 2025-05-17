@@ -70,7 +70,7 @@ function do_patchFiles()
   $patchCode = file_get_contents($patchFilePath);
   
   if(!str_contains($indexCode, "hesk_password_verify(\$pass, \$user_row['pass'])") 
-        || !str_contains($commonCode, " hesk_password_verify(", " local_hesk_password_verify(")
+        || !str_contains($commonCode, " hesk_password_verify(")
         || !str_contains($commonCode, " hesk_password_needs_rehash(")) {
             
             showDebugText("This Version of Hesk is not supported. Pls add a issue-ticket on https://github.com/domidodo/HeskPlugin_LDAP/issues", 'NOTICE');
