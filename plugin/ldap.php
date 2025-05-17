@@ -61,21 +61,31 @@ CREATE TABLE IF NOT EXISTS `".hesk_dbEscape($hesk_settings['db_pfix'])."plugin_l
 
 function do_patchFiles()
 {
-  $patchFilePath = HESK_PATH.'admin/index.php';
-  $code=file_get_contents($patchFilePath);
-  $code=str_replace("hesk_password_verify(\$pass, \$user_row['pass'])", "hesk_password_verify(\$pass, \$user_row['pass'], intval(\$user_row['id']))",$code);
-  file_put_contents($patchFilePath, $code);
+  $indexFilePath = HESK_PATH.'admin/index.php';
+  $commonFilePath = HESK_PATH.'inc/common.inc.php';
+  $patchFilePath = HESK_PATH.'plugin/ldap_patch.php';
   
-  $patchFilePath = HESK_PATH.'inc/common.inc.php';
-  $code=file_get_contents($patchFilePath);
-  $code=str_replace(" hesk_password_verify(", " local_hesk_password_verify(",$code);
-  $code=str_replace(" hesk_password_needs_rehash(", " local_hesk_password_needs_rehash(",$code);
-  $code=str_replace("<?php", "<?php\nrequire(HESK_PATH . 'plugin/ldap_settings.inc.php');",$code);
-  file_put_contents($patchFilePath, $code);
+  $indexCode = file_get_contents($indexFilePath);
+  $commonCode = file_get_contents($commonFilePath);
+  $patchCode = file_get_contents($patchFilePath);
   
-  $code=file_get_contents(HESK_PATH.'plugin/ldap_patch.php');
-  $code=str_replace("<?php", "",$code);
-  file_put_contents($patchFilePath, $code, FILE_APPEND);
+  if(!str_contains($indexCode, "hesk_password_verify(\$pass, \$user_row['pass'])") 
+        || !str_contains($commonCode, " hesk_password_verify(", " local_hesk_password_verify(")
+        || !str_contains($commonCode, " hesk_password_needs_rehash(")) {
+            
+            showDebugText("This Version of Hesk is not supported. Pls add a issue-ticket on https://github.com/domidodo/HeskPlugin_LDAP/issues", 'NOTICE');
+            return false;
+  }
+  
+  $indexCode = str_replace("hesk_password_verify(\$pass, \$user_row['pass'])", "hesk_password_verify(\$pass, \$user_row['pass'], intval(\$user_row['id']))", $indexCode);
+  $commonCode = str_replace(" hesk_password_verify(", " local_hesk_password_verify(",$commonCode);
+  $commonCode = str_replace(" hesk_password_needs_rehash(", " local_hesk_password_needs_rehash(",$commonCode);
+  $commonCode = str_replace("<?php", "<?php\nrequire(HESK_PATH . 'plugin/ldap_settings.inc.php');",$commonCode);
+  $patchCode = str_replace("<?php", "",$patchCode);
+  
+  file_put_contents($indexFilePath, $indexCode);
+  file_put_contents($commonFilePath, $commonCode);
+  file_put_contents($commonFilePath, $patchCode, FILE_APPEND);
   
   return true;
 }
@@ -113,12 +123,12 @@ function do_LdapSync()
       {
         $ldapUsr = $contacts[$i];
         $dn = $ldapUsr["dn"];
-		
-		if(!array_key_exists("uid", $ldapUsr) || !array_key_exists("mail", $ldapUsr) || !array_key_exists("displayname", $ldapUsr)) {
-			showDebugText("Skip user " . $dn, 'NOTICE');
-			continue;
-		}
-		
+        
+        if(!array_key_exists("uid", $ldapUsr) || !array_key_exists("mail", $ldapUsr) || !array_key_exists("displayname", $ldapUsr)) {
+            showDebugText("Skip user " . $dn, 'NOTICE');
+            continue;
+        }
+        
         $uid = $ldapUsr["uid"][0];
         $mail = $ldapUsr["mail"][0];
         $displayName = $ldapUsr["displayname"][0];
@@ -194,7 +204,7 @@ function showDebugText($txt, $logLvl, $ignoreDebugMode = false){
   {
     echo $txt;
     echo "<br/>";
-	hesk_process_messages($txt, 'NOREDIRECT', $logLvl);
+    hesk_process_messages($txt, 'NOREDIRECT', $logLvl);
   }
 }
 
